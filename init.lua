@@ -601,16 +601,15 @@ require('lazy').setup({
       --  See `:help lsp-config` for information about keys and how to configure
       ---@type table<string, vim.lsp.Config>
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        bashls = {},
+        dockerls = {},
+        gopls = {},
+        intelephense = {}, -- PHP
+        jsonls = {},
+        pyright = {},
+        terraformls = {},
+        ts_ls = {},        -- JavaScript/TypeScript
+        yamlls = {},
 
         stylua = {}, -- Used to format Lua code
 
@@ -876,7 +875,12 @@ require('lazy').setup({
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter-intro`
     config = function()
       -- ensure basic parser are installed
-      local parsers = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' }
+      local parsers = {
+        'bash', 'c', 'css', 'diff', 'dockerfile', 'git_config', 'gitcommit',
+        'gitignore', 'go', 'hcl', 'html', 'javascript', 'json', 'lua',
+        'luadoc', 'markdown', 'markdown_inline', 'php', 'python', 'query',
+        'regex', 'terraform', 'toml', 'vim', 'vimdoc', 'yaml',
+      }
       require('nvim-treesitter').install(parsers)
 
       ---@param buf integer
